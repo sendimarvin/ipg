@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <header>
+
+  </header>
+  <body>
+
+
+    <script>
+
+
+
+      const checkoutData = {
+        transactionReference: "RISSUG123445",
+        orderId: "1670322242064",
+        amount: "500000",
+        dateOfPayment: "2022-18-09T10:24:02.064Z",
+        redirectUrl: "http://localhost:3000/services/parking/interswitch-payment-summary?paymentType=pass&serviceType=parking",
+        narration: "Parking Pass Payment",
+        expiryTime: "2022-12-06T10:29:02.064Z",
+        customerId: "dcff13f3-38f6-4f55-a2ce-b45c434fdd75",
+        customerFirstName: "Marvin",
+        customerSecondName: "Sendikaddiwa",
+        customerEmail: "sendimarvin1@gmail.com",
+        customerMobile: "+256702544870",
+        merchantCode: "RISSUG0001",
+        terminalType: "WEB",
+        domain: "ISWUG",
+        currencyCode: "UGX",
+        displayPrivacyPolicy: "false",
+        fee: "0",
+        iconUrl: "",
+        providerIconUrl: "",
+        primaryAccentColor: "#9e5be1",
+        redirectMerchantName: "Return to Customer Portal",
+        merchantName: "SCHOOLPAL Connection",
+        customerCity: "Kampala",
+        customerCountry: "Uganda",
+        customerState: "Nakasero",
+      };
+
+      function checkout(jsonData) {
+        const checkoutForm = document.createElement("form");
+        checkoutForm.style.display = "none";
+        checkoutForm.method = "POST";
+        checkoutForm.action =
+          "https://gatewaybackend-uat.quickteller.co.ke/ipg-backend/api/checkout";
+
+        for (const key in jsonData) {
+          const formField = document.createElement("input");
+          formField.name = key;
+          formField.value = jsonData[key];
+          checkoutForm.appendChild(formField);
+        }
+
+        document.body.appendChild(checkoutForm);
+        checkoutForm.submit();
+        document.body.removeChild(checkoutForm);
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        checkoutData.orderId = Math.random(1000000, 10000000)
+        
+        checkout(checkoutData) 
+      });
+
+    </script>
+  </body>
+</html>
+
+
+
+
